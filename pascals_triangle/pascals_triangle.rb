@@ -19,7 +19,7 @@ class Triangle
           elsif idx == row.size - 1
             completed_rows[index][idx] = col
           else
-            completed_rows[index][idx] = (completed_rows[index - 1][idx - 1] || 0) + (completed_rows[index - 1][idx])
+            completed_rows[index][idx] = completed_rows[index - 1][idx - 1] + completed_rows[index - 1][idx]
           end
         end
       end
