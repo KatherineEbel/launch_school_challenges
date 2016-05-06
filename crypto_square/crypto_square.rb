@@ -1,5 +1,3 @@
-require 'pry'
-
 class Crypto
   def initialize(plaintext)
     @plaintext = plaintext
@@ -18,11 +16,15 @@ class Crypto
   end
 
   def ciphertext
-    binding.pry
+    normalize_ciphertext.gsub " ", ""
+  end
+
+  def normalize_ciphertext
+    plaintext_segments.each_with_object([]) do |word, result|
+      word.chars.each_with_index do |chr, index|
+        result[index] = result[index] || []
+        result[index] << chr
+      end
+    end.map(&:join).join(' ')
   end
 end
-
-crypto = Crypto.new('Time is an illusion. Lunchtime doubly so.')
-
-crypto.ciphertext
-
